@@ -9,7 +9,7 @@ from langchain_core.prompts import (
     FewShotPromptTemplate,
     MessagesPlaceholder,
     PromptTemplate,
-    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
 )
 from few_shot_data import few_shot_examples
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HF_TOKEN')
@@ -56,7 +56,7 @@ few_shot_prompt = FewShotPromptTemplate(
 # Step 4: Add examples to user prompt
 full_prompt = ChatPromptTemplate.from_messages(
     [
-        SystemMessagePromptTemplate(prompt=few_shot_prompt),
+        HumanMessagePromptTemplate(prompt=few_shot_prompt),
         ("user", "{input}"),
         MessagesPlaceholder("agent_scratchpad"),
     ]
